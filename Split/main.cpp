@@ -7,7 +7,7 @@ using std::endl;
 
 #define tab "\t"
 #define DELIMITER "\n------------------------------------------------------------------------\n"
-#define SPLIT_1
+//#define SPLIT_1
 #define SPLIT_2
 
 void FillRand(int arr[], const int n);
@@ -89,6 +89,7 @@ void main()
 	int* odd_arr = new int[odd_counts];
 	for (int i = 0, j = 0, k = 0; i < n; i++)
 	{
+		//arr[i] % 2 == 0 ? even_arr[j++] = arr[i] : odd_arr[k++] = arr[i];
 		(arr[i] % 2 == 0 ? even_arr[j++] : odd_arr[k++]) = arr[i];
 	}
 	cout << "Четные числа массива:   ";
