@@ -9,7 +9,6 @@ using std::endl;
 void FillRand(int arr[], const int n);
 void Print(int arr[], const int n);
 
-
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -27,9 +26,10 @@ void main()
 	{
 		b_arr[i] = arr[i];
 	}
+	delete[] arr;
+	arr = b_arr;
 	b_arr[n] = value;
 	n++;
-	arr = b_arr;
 	Print(arr, n);
 	delete[] b_arr;
 }
