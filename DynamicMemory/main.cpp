@@ -13,7 +13,7 @@ void Print(int arr[], const int n);
 void main()
 {
 	setlocale(LC_ALL, "");
-	int n;
+	int n=5;
 	cout << "Введите размер массива: "; cin >> n;
 	int* arr = new int[n];
 	
@@ -21,11 +21,16 @@ void main()
 	Print(arr, n);
 	
 	int value;
-	cout << "ВВедите добавляемое значение: "; cin >> value;
-	arr[n] = value;
+	cout << "Введите добавляемое значение: "; cin >> value;
+	int* add_arr = new int[n + 1];
+	for (int i = 0; i < n; i++) 
+	{
+		add_arr[i] = arr[i];
+	}
+	add_arr[n] = value;
 	n++;
+	arr = add_arr;
 	Print(arr, n);
-
 	delete[] arr;
 }
 void FillRand(int arr[], const int n)
