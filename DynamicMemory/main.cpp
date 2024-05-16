@@ -22,16 +22,16 @@ void main()
 	
 	int value;
 	cout << "Введите добавляемое значение: "; cin >> value;
-	int* add_arr = new int[n + 1];
+	int* b_arr = new int[n + 1];
 	for (int i = 0; i < n; i++) 
 	{
-		add_arr[i] = arr[i];
+		b_arr[i] = arr[i];
 	}
-	add_arr[n] = value;
+	b_arr[n] = value;
 	n++;
-	arr = add_arr;
+	arr = b_arr;
 	Print(arr, n);
-	delete[] add_arr;
+	delete[] b_arr;
 }
 void FillRand(int arr[], const int n)
 {
