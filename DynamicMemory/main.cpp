@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 using std::cin;
 using std::cout;
@@ -14,14 +14,14 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	int n=5;
-	cout << "Ââåäèòå ðàçìåð ìàññèâà: "; cin >> n;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð¼Ð°ÑÑÐ¸Ð²Ð°: "; cin >> n;
 	int* arr = new int[n];
 	
 	FillRand(arr, n);
 	Print(arr, n);
 	
 	int value;
-	cout << "Ââåäèòå äîáàâëÿåìîå çíà÷åíèå: "; cin >> value;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: "; cin >> value;
 	int* add_arr = new int[n + 1];
 	for (int i = 0; i < n; i++) 
 	{
@@ -38,7 +38,7 @@ void FillRand(int arr[], const int n)
 	for (int i = 0; i < n; i++)
 	{
 		*(arr + i) = rand() % 100;
-		// Îáðàùåíèå ê ýëåìåíòàì ìàññèâà ÷åðåç àðèôìåòèêó óêàçàòåëåé ò îïåðåòîð ðàçûìåíîâàíèÿ
+		// ÐžÐ±Ñ€Ð°Ñ‰ÐµÐ½Ð¸Ðµ Ðº ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼ Ð¼Ð°ÑÑÐ¸Ð²Ð° Ñ‡ÐµÑ€ÐµÐ· Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸ÐºÑƒ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÐµÐ¹ Ñ‚ Ð¾Ð¿ÐµÑ€ÐµÑ‚Ð¾Ñ€ Ñ€Ð°Ð·Ñ‹Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ
 	}
 }
 void Print(int arr[], const int n)
@@ -46,7 +46,7 @@ void Print(int arr[], const int n)
 	for (int i = 0; i < n; i++)
 	{
 		cout << arr[i] << tab;
-		// Îáðàùåíèå ê ýëåìåíòàì ìàññèâà ÷åðåç îïåðàòîð èíäåêñèðîâàíèÿ []
+		// ÐžÐ±Ñ€Ð°Ñ‰ÐµÐ½Ð¸Ðµ Ðº ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼ Ð¼Ð°ÑÑÐ¸Ð²Ð° Ñ‡ÐµÑ€ÐµÐ· Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ð¸Ð½Ð´ÐµÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ []
 	}
 	cout << endl;
 }
