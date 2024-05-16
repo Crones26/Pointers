@@ -31,7 +31,7 @@ void main()
 	n++;
 	arr = add_arr;
 	Print(arr, n);
-	delete[] arr;
+	delete[] add_arr;
 }
 void FillRand(int arr[], const int n)
 {
