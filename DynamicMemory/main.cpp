@@ -126,7 +126,8 @@ int* insert(int arr[], int& n, int index, const int value)
 	{
 		buffer[i] = arr[i];
 	}
-	for (int i = n; i > index; i--) {
+	for (int i = n; i > index; i--)
+	{
 		buffer[i] = buffer[i - 1];
 	}
 	delete[] arr;
