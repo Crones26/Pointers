@@ -119,7 +119,7 @@ int* pop_front(int arr[], int& n)
 	arr = buffer;
 	return arr;
 }
-int* insert(int arr[], int& n, int index, const int value)
+int* insert(int arr[], int& n, int index, int value)
 {
 	int* buffer = new int[n + 1];
 	for (int i = 0; i < n; i++)
