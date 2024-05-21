@@ -364,6 +364,7 @@ int** pop_row_back(int** arr, int& rows, const int cols)
 	{
 		buffer[i] = arr[i];
 	}
+	delete[] arr[rows];
 	delete[] arr;
 	return buffer;
 }
@@ -374,6 +375,7 @@ int** pop_row_front(int** arr, int& rows, const int cols)
 	{
 		buffer[i] = arr[i + 1];
 	}
+	delete[] arr[0];
 	delete[] arr;
 	return buffer;
 }
@@ -388,6 +390,7 @@ int** erase_row(int** arr, int& rows, const int cols, const int index)
 	{
 		buffer[i] = arr[i + 1];
 	}
+	delete[] arr[index];
 	delete[] arr;
 	return buffer;
 }
