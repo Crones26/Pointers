@@ -53,7 +53,8 @@ void main()
 #ifdef DYNAMIC_MEMORY_1
     int n = 5;
     cout << "Введите размер массива: "; cin >> n;
-    int* arr = new int[n];
+    //int* arr = new int[n];
+    double* arr = new double[n];
 
     FillRand(arr, n);
     Print(arr, n);
@@ -90,8 +91,8 @@ void main()
 
 #ifdef DYNAMIC_MEMORY_2
 
-    int rows = 3;
-    int cols = 4;
+    int rows;
+    int cols;
     cout << "Введите количество строк: "; cin >> rows;
     cout << "Введите количество элементов строки: "; cin >> cols;
 
