@@ -11,10 +11,10 @@ template <typename T> void Clear(T** arr, const int rows);
 
 void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(double arr[], const int n, int minRand = 0, int maxRand = 100);
-void FillRand(char arr[], const int n);
-void FillRand(int** arr, const int rows, const int cols);
+void FillRand(char arr[], const int n, int minRand = 0, int maxRand = 100);
+void FillRand(int** arr, const int rows, const int cols, int minRand = 0, int maxRand = 100);
 void FillRand(double** arr, const int rows, const int cols, int minRand = 0, int maxRand = 100);
-void FillRand(char** arr, const int rows, const int cols);
+void FillRand(char** arr, const int rows, const int cols, int minRand = 0, int maxRand = 100);
 
 template<typename T> void Print(T arr[], const int n);
 template<typename T> void Print(T** arr, const int rows, const int cols);
@@ -25,7 +25,7 @@ template<typename T> T* insert(T* arr, int& n, T value, int index);
 
 template<typename T> T** push_row_back(T** arr, int& rows, const int cols);
 template<typename T> T** push_row_front(T** arr, int& rows, const int cols);
-template<typename T> T** insert_row(T** arr, int& rows, const int cols, const int index);
+template<typename T> T** insert_row(T** arr, int& rows, const int cols, int index);
 
 template<typename T> void push_col_back(T** arr, const int rows, int& cols);
 template<typename T> void push_col_front(T** arr, const int rows, int& cols);
@@ -50,16 +50,18 @@ void main()
 {
     setlocale(LC_ALL, "");
 
+typedef char DataType; // Директива typedef создает псевдоним для существующего типа данных
+
 #ifdef DYNAMIC_MEMORY_1
     int n = 5;
     cout << "Введите размер массива: "; cin >> n;
-    //int* arr = new int[n];
-    double* arr = new double[n];
+
+    DataType* arr = new DataType[n];
 
     FillRand(arr, n);
     Print(arr, n);
 
-    int value;
+    DataType value;
     cout << "Введите добавляемое значение: "; cin >> value;
     arr = push_back(arr, n, value);
     Print(arr, n);
@@ -68,8 +70,8 @@ void main()
     arr = push_front(arr, n, value);
     Print(arr, n);
     int index;
-    cout << "Введите добавляемое значение на место индекса: "; cin >> value;
     cout << "Введите индекс: "; cin >> index;
+    cout << "Введите добавляемое значение на место индекса: "; cin >> value;
     arr = insert(arr, n, value, index);
     Print(arr, n);
 
@@ -96,27 +98,22 @@ void main()
     cout << "Введите количество строк: "; cin >> rows;
     cout << "Введите количество элементов строки: "; cin >> cols;
 
-    //int** arr = Allocate <int>(rows, cols);
-    double** arr = Allocate <double>(rows, cols);
-    //char** arr = Allocate <char>(rows, cols);
+    DataType** arr = Allocate <DataType>(rows, cols);
 
     FillRand(arr, rows, cols);
     Print(arr, rows, cols);
     cout << "Добавление последней строки в массив: " << endl;
     arr = push_row_back(arr, rows, cols);
-    //FillRand(arr[rows - 1], cols);
     FillRand(arr[rows - 1], cols, 100, 1000);
     Print(arr, rows, cols);
     cout << "Добавление нулевой строки в массив: " << endl;
-    arr = push_row_front(arr, rows, cols);
-    //FillRand(arr[0], cols);
+    arr = push_row_front(arr, rows, cols);;
     FillRand(arr[0], cols, 100, 1000);
     Print(arr, rows, cols);
-    int row_index;
-    cout << "Введите индекс для вставки строки: "; cin >> row_index;
-    arr = insert_row(arr, rows, cols, row_index);
-    //if (row_index < rows) FillRand(arr[row_index], cols);
-    if (row_index < rows)FillRand(arr[row_index], cols, 100, 1000);
+    int index;
+    cout << "Введите индекс для вставки строки: "; cin >> index;
+    arr = insert_row(arr, rows, cols, index);
+    if (index < rows)FillRand(arr[index], cols, 100, 1000);
     Print(arr, rows, cols);
 
     cout << "Удаление последней строки: " << endl;
@@ -125,8 +122,8 @@ void main()
     cout << "Удаление нулевой строки: " << endl;
     arr = pop_row_front(arr, rows, cols);
     Print(arr, rows, cols);
-    cout << "Введите индекс для удаления строки: "; cin >> row_index;
-    arr = erase_row(arr, rows, cols, row_index);
+    cout << "Введите индекс для удаления строки: "; cin >> index;
+    arr = erase_row(arr, rows, cols, index);
     Print(arr, rows, cols);
 
     cout << "Добавление последнего столбца в массив: " << endl;
@@ -135,9 +132,9 @@ void main()
     cout << "Добавление нулевого столбца в массив: " << endl;
     push_col_front(arr, rows, cols);
     Print(arr, rows, cols);
-    int col_index;
-    cout << "Введите индекс для вставки столбца: "; cin >> col_index;
-    insert_col(arr, rows, cols, col_index);
+    
+    cout << "Введите индекс для вставки столбца: "; cin >> index;
+    insert_col(arr, rows, cols, index);
     Print(arr, rows, cols);
 
     cout << "Удаление последнего столбца: " << endl;
@@ -146,8 +143,8 @@ void main()
     cout << "Удаление нулевого столбца: " << endl;
     pop_col_front(arr, rows, cols);
     Print(arr, rows, cols);
-    cout << "Введите индекс для удаления столбца: "; cin >> col_index;
-    erase_col(arr, rows, cols, col_index);
+    cout << "Введите индекс для удаления столбца: "; cin >> index;
+    erase_col(arr, rows, cols, index);
     Print(arr, rows, cols);
 
     Clear(arr, rows);
@@ -182,20 +179,22 @@ void FillRand(int arr[], const int n, int minRand, int maxRand)
 }
 void FillRand(double arr[], const int n, int minRand, int maxRand)
 {
+    minRand *= 100;
+    maxRand *= 100;
     for (int i = 0; i < n; i++)
     {
         *(arr + i) = rand() % (maxRand - minRand) + minRand;
         *(arr + i) /= 100;
     }
 }
-void FillRand(char arr[], const int n)
+void FillRand(char arr[], const int n, int minRand, int maxRand)
 {
     for (int i = 0; i < n; i++)
     {
         *(arr + i) = rand();
     }
 }
-void FillRand(int** arr, const int rows, const int cols)
+void FillRand(int** arr, const int rows, const int cols, int minRand, int maxRand)
 {
     for (int i = 0; i < rows; i++)
     {
@@ -208,16 +207,17 @@ void FillRand(int** arr, const int rows, const int cols)
 }
 void FillRand(double** arr, const int rows, const int cols, int minRand, int maxRand)
 {
+    minRand *= 100;
+    maxRand *= 100;
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
         {
-            arr[i][j] = minRand + rand() % (maxRand - minRand);
-            arr[i][j] /= 100;
+            arr[i][j] = double(rand() % (maxRand - minRand) + minRand) / 100;
         }
     }
 }
-void FillRand(char** arr, const int rows, const int cols)
+void FillRand(char** arr, const int rows, const int cols, int minRand, int maxRand)
 {
     for (int i = 0; i < rows; i++)
     {
@@ -239,7 +239,9 @@ template<typename T> void Print(T** arr, const int rows, const int cols)
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
+        {
             cout << +arr[i][j] << tab;
+        }
         cout << endl;
     }
     cout << endl;
@@ -308,19 +310,21 @@ template<typename T> T** push_row_front(T** arr, int& rows, const int cols)
     rows++;
     return buffer;
 }
-template<typename T> T** insert_row(T** arr, int& rows, const int cols, const int index)
+template<typename T> T** insert_row(T** arr, int& rows, const int cols, int index)
 {
+    if (index >= rows)return arr;
     T** buffer = new T * [rows + 1];
     for (int i = 0; i < index; i++)
     {
         buffer[i] = arr[i];
     }
-    buffer[index] = new T[cols]{};
+    
     for (int i = index; i < rows; i++)
     {
         buffer[i + 1] = arr[i];
     }
     delete[] arr;
+    buffer[index] = new T[cols];
     rows++;
     return buffer;
 }

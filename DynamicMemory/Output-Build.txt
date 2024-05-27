@@ -1,0 +1,8 @@
+﻿Build started at 9:17...
+1>------ Build started: Project: DynamicMemory, Configuration: Debug x64 ------
+1>main.cpp
+1>C:\Users\Cympak\source\repos\Pointers\DynamicMemory\main.cpp(50,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+1>DynamicMemory.vcxproj -> C:\Users\Cympak\source\repos\Pointers\x64\Debug\DynamicMemory.exe
+1>Done building project "DynamicMemory.vcxproj".
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 9:17 and took 00,806 seconds ==========
