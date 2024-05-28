@@ -50,7 +50,7 @@ void main()
 {
     setlocale(LC_ALL, "");
 
-    typedef char DataType; // Директива typedef создает псевдоним для существующего типа данных
+    typedef double DataType; // Директива typedef создает псевдоним для существующего типа данных
 #ifdef DYNAMIC_MEMORY_1
     int n = 5;
     cout << "Введите размер массива: "; cin >> n;
