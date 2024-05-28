@@ -112,7 +112,7 @@ void main()
     Print(arr, rows, cols);
     cout << "Введите индекс для вставки строки: "; cin >> index;
     arr = insert_row(arr, rows, cols, index);
-    if (index < rows)FillRand(arr[index], cols, 100, 1000);
+    if (index < rows)FillRand(arr[index], cols);
     Print(arr, rows, cols);
 
     cout << "Удаление последней строки: " << endl;
@@ -147,7 +147,9 @@ void main()
 
     Clear(arr, rows);
 #endif // DYNAMIC_MEMORY_2
+
 }
+
 template <typename T> T** Allocate(const int rows, const int cols)
 {
     T** arr = new T * [rows];
@@ -188,6 +190,7 @@ void FillRand(char arr[], const int n, int minRand, int maxRand)
     for (int i = 0; i < n; i++)
     {
         *(arr + i) = rand();
+        if (arr[i] == '\f')i--;
     }
 }
 void FillRand(int** arr, const int rows, const int cols, int minRand, int maxRand)
