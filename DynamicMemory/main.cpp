@@ -147,7 +147,6 @@ void main()
 
     Clear(arr, rows);
 #endif // DYNAMIC_MEMORY_2
-
 }
 
 template <typename T> T** Allocate(const int rows, const int cols)
